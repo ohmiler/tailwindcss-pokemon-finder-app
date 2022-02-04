@@ -42,18 +42,22 @@ function App() {
           <button className="bg-indigo-600 px-2 mt-5 text-lg rounded text-gray-100">Search</button>
         </form>
 
-        {err && <p className="my-5">No data was found!</p>}
-
-        {isLoading ? (
-          <div className='py-8'>
-            <p>Loading...</p>
-          </div>
-        ) : (
-          <>
-            <img loading="lazy" className="my-5 w-50 h-50 rounded-xl shadow-lg mx-auto" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`} alt="pokemon" />
-            <h1 className="text-lg text-gray-700">{data.name}</h1>
-          </>
-        )}
+        {err ? (
+            <p className='my-5'>No data was found!</p>
+          ) : (
+            <>
+              {isLoading ? (
+                <p className="my-5">Loading...</p>
+              ) : (
+                <>
+                  <img className='my-5 w-50 h-50 rounded-xl shadow-lg mx-auto' alt={`${data.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`} alt="" />
+                  <h1 className='text-lg text-gray-700'>{data.name}</h1>
+                  <h3 className='text-md text-gray-500'>Weight: {data.weight}</h3>
+                </>
+              )}
+            </>
+          )}
+          
         </div>
     </div>
   )
